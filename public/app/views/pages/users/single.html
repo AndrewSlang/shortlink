@@ -1,0 +1,53 @@
+<div class="page-header">
+	<h1 ng-if="user.type == 'create'">Create User</h1>
+</div>
+
+<form class="form-horizontal" name="formUser" ng-submit="user.saveUser()">
+	
+	<div class="form-group">
+		<label class="col-sm-2 control-label">Name</label>
+		<div class="col-sm-6">
+			<input type="text" class="form-control" name="name" required ng-model="user.userData.name">
+		</div>
+		<div ng-show="formUser.name.$dirty && formUser.name.$error.required">Required</div>
+	</div>
+
+	<div class="form-group">
+		<label class="col-sm-2 control-label">Username</label>
+		<div class="col-sm-6">
+			<input type="text" class="form-control" name="username" required ng-model="user.userData.username">
+		</div>
+		<div ng-show="formUser.username.$dirty && formUser.username.$error.required">Required</div>
+	</div>
+
+	<div class="form-group">
+		<label class="col-sm-2 control-label">Password</label>
+		<div class="col-sm-6">
+			<input type="password" class="form-control" name="password" required ng-minlength="4" ng-model="user.userData.password">
+		</div>
+		<div ng-show="formUser.password.$dirty && formUser.password.$error.required">Required</div>
+		<div ng-show="formUser.password.$dirty && formUser.password.$error.minlength">Min 4 symbols!</div>
+	</div>
+	
+	<div class="form-group">
+	<div class="col-sm-offset-2 col-sm-6">
+		<button type="submit" class="btn btn-success btn-lg btn-block" ng-disabled="formUser.$invalid" ng-if="user.type == 'create'">Create User</button>
+	</div>
+	</div>
+
+</form>
+<div class="row show-hide-message" ng-show="user.message">
+	<div class="col-sm-6 col-sm-offset-2">
+		<div class="alert alert-info">
+			{{ user.message }}
+		</div>
+
+		<div class="text-center" ng-if="user.btnLogin">
+			<a href="/login" class="btn btn-primary">Login</a>
+		</div>
+	</div>
+</div>
+
+<div class="page-header">
+	<a href="/" class="btn btn-primary">Back</a>
+</div>

@@ -1,0 +1,33 @@
+<div class="jumbotron text-center">
+	<h1>Welcome!</h1>
+
+	<div ng-if="!main.loggedIn">
+		<p>Login to see your links.</p>
+		<a href="/login" class="btn btn-primary">Login</a>
+		<a href="/signup" class="btn btn-primary">Sign Up</a>
+	</div>
+
+	<div ng-if="main.loggedIn" class="my-links-btn">
+		<a href="/links" class="btn btn-primary">View My Links</a>
+	</div>
+
+	<table class="table table-bordered table-striped" ng-show="main.links">
+		<thead>
+			<tr>
+				<th>Links</th>
+				<th>Short</th>
+				<th class="col-sm-1"></th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="link in main.links | orderBy:'-_id'">
+				<td>{{ link.linkname }}</td>
+				<td><a ng-href="http://localhost:8080/redirect/{{ link.shortlinkname }}">localhost:8080/redirect/{{ link.shortlinkname }}</td>
+				<td class="col-sm-1">
+					<a ng-href="/info/{{ link.shortlinkname }}" class="btn btn-primary">Info</a>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+
+</div>

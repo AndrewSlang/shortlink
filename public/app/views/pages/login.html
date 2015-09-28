@@ -1,0 +1,43 @@
+<div class="row col-md-6 col-md-offset-3">
+	
+	<div class="alert alert-info">
+		<p>Test Info</p>
+		<p><strong>Username</strong>: chris</p>
+		<p><strong>Password</strong>: supersecret</p>
+	</div>
+
+	<div class="jumbotron">
+		<h1>Login</h1>
+
+		<form name="formLogin" ng-submit="login.doLogin()">
+			
+			<div class="form-group">
+				<label>Username</label>
+				<input type="text" class="form-control" name="username" required ng-model="login.loginData.username">
+				<div ng-show="formLogin.username.$dirty && formLogin.username.$error.required">Required</div>
+			</div>
+
+			<div class="form-group">
+				<label>Password</label>
+				<input type="password" class="form-control" name="password" required ng-minlength="4" ng-model="login.loginData.password">
+				<div ng-show="formLogin.password.$dirty && formLogin.password.$error.required">Required</div>
+				<div ng-show="formLogin.password.$dirty && formLogin.password.$error.minlength">Min 4 symbols!</div>
+			</div>
+
+			<button type="submit" class="btn btn-block btn-primary" ng-disabled="formLogin.$invalid">
+				<span ng-if="!login.processing">Login</span>
+				<span ng-if="login.processing" class="spinner"><span class="glyphicon glyphicon-repeat"></span></span>
+			</button>
+
+			<div class="alert alert-danger" ng-if="login.error">
+				{{ login.error }}
+			</div>
+
+		</form>
+	</div>
+
+	<div class="page-header">
+		<a href="/" class="btn btn-primary">Back</a>
+	</div>
+	
+</div>

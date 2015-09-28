@@ -1,0 +1,48 @@
+<div class="page-header">
+	<h1>Create link</h1>
+</div>
+
+<form class="form-horizontal" name="formLink" ng-submit="link.createLink()">
+	
+	<div class="form-group">
+		<label class="col-sm-2 control-label">Link</label>
+		<div class="col-sm-6">
+			<input type="text" class="form-control" name="linkname" required ng-pattern="link.regular" ng-model="link.linkData.linkname">
+		</div>
+		<div ng-show="formLink.linkname.$dirty && formLink.linkname.$error.required">Required</div>
+		<div ng-show="formLink.linkname.$dirty && formLink.linkname.$error.pattern">Enter link</div>
+	</div>
+
+	<div class="form-group">
+		<label class="col-sm-2 control-label">Description</label>
+		<div class="col-sm-6">
+			<input type="text" class="form-control" ng-model="link.linkData.description">
+		</div>
+	</div>
+
+	<div class="form-group">
+		<label class="col-sm-2 control-label">Tags</label>
+		<div class="col-sm-6">
+			<input type="text" class="form-control" ng-model="link.linkData.tags">
+		</div>
+		<div class="col-sm-6 text-center">
+			Tags are separated by ";"
+		</div>
+	</div>
+
+	<div class="form-group">
+		<div class="col-sm-offset-2 col-sm-6">
+			<button type="submit" ng-disabled="formLink.$invalid" class="btn btn-success btn-lg btn-block">Create link</button>
+		</div>
+	</div>
+
+</form>
+<div class="row show-hide-message" ng-show="link.message">
+	<div class="col-sm-6 col-sm-offset-2">
+		
+		<div class="alert alert-info">
+			{{ link.message }}
+		</div>
+
+	</div>
+</div>

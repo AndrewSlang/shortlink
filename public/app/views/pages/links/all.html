@@ -1,0 +1,41 @@
+<div class="page-header">
+	<h1>
+		Links 
+		<a href="/link/create" class="btn btn-default">
+			<span class="glyphicon glyphicon-plus"></span> 
+			Create Link
+		</a>
+	</h1>
+</div>
+
+<div class="jumbotron text-center" ng-show="link.processing">
+	<span class="glyphicon glyphicon-repeat spinner"></span>
+	<p>Loading Links...</p>
+</div>
+
+<table class="table table-bordered table-striped" ng-show="link.links">
+	<thead>
+		<tr>
+			<th>Links</th>
+			<th>Short</th>
+			<th>Description</th>
+			<th>Tags</th>
+			<th>Hits</th>
+			<th class="col-sm-1"></th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr ng-repeat="link in link.links | orderBy:'-_id'">
+			<td>{{ link.linkname }}</td>
+			<td><a ng-href="http://localhost:8080/redirect/{{ link.shortlinkname }}">localhost:8080/redirect/{{ link.shortlinkname }}</td>
+			<td>{{ link.description }}</td>
+			<td>
+				<a href="/tag/{{ tagname }}" ng-repeat="tagname in link.tags">{{ tagname }}; </a>
+			</td>
+			<td>{{ link.hits }}</td>
+			<td class="col-sm-1">
+				<a ng-href="/links/{{ link.shortlinkname }}" class="btn btn-primary">Edit</a>
+			</td>
+		</tr>
+	</tbody>
+</table>

@@ -1,0 +1,31 @@
+<div class="page-header">
+	<h1>
+		Links by tag "{{ link.tagname }}" 
+	</h1>
+</div>
+
+<div class="jumbotron text-center" ng-show="link.processing">
+	<span class="glyphicon glyphicon-repeat spinner"></span>
+	<p>Loading Links...</p>
+</div>
+
+<table class="table table-bordered table-striped" ng-show="link.links">
+	<thead>
+		<tr>
+			<th>Links</th>
+			<th>Short</th>
+			<th>Description</th>
+			<th>Tags</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr ng-repeat="link in link.links | orderBy:'-_id'">
+			<td>{{ link.linkname }}</td>
+			<td><a href="#">localhost:8080/redirect/{{ link.shortlinkname }}</td>
+			<td>{{ link.description }}</td>
+			<td>
+				<a ng-href="/tag/{{ tagname }}" ng-repeat="tagname in link.tags">{{ tagname }}; </a>
+			</td>
+		</tr>
+	</tbody>
+</table>
